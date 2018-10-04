@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"sourceMap": true,
+		"outDir": "client",
+		"rootDir": "server",
+		"lib": ["es2016"]
+	},
+	"exclude": ["client", "node_modules"]
+}
