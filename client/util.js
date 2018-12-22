@@ -70,9 +70,7 @@ function TranslateCompletionItems(items, line, expand = false) {
     return items.map(item => {
         const result = item;
         const range = new vscode_1.Range(new vscode_1.Position(line.lineNumber, result.textEdit.range.start.character), new vscode_1.Position(line.lineNumber, result.textEdit.range.end.character));
-
         result.textEdit = null;
-
         // @ts-ignore - setting range for intellisense to show results properly
         result.range = range;
         if (expand) {
@@ -92,7 +90,6 @@ languageId,
 // position: Position | HtmlPosition,
 content) {
     const doc = vscode_html_languageservice_1.TextDocument.create(`embedded://document.${languageId}`, languageId, 1, content);
-
     return doc;
 }
 exports.CreateVirtualDocument = CreateVirtualDocument;
