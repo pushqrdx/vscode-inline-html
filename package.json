@@ -8,8 +8,8 @@
 	"icon": "docs/logo.png",
 	"preview": true,
 	"bugs": {
-        "url": "https://github.com/pushqrdx/vscode-inline-html/issues"
-    },
+		"url": "https://github.com/pushqrdx/vscode-inline-html/issues"
+	},
 	"keywords": [
 		"html",
 		"template",
@@ -58,13 +58,13 @@
 					"meta.template.expression.ts": "typescript"
 				}
 			}
-
 		]
 	},
 	"devDependencies": {
 		"vscode-languageserver-types": "^3.6.0",
 		"@types/node": "7.0.43",
-		"vscode": "^1.1.10"
+		"vscode": "^1.1.10",
+		"typescript": "^3.2.2"
 	},
 	"dependencies": {
 		"vscode-css-languageservice": "^3.0.7",
