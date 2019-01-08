@@ -7,7 +7,10 @@
 
 ## Usage
 
-Use `/*html*/` or `html` followed by the backtick \` character inside a `Javascript` or `Typescript` file to get full editor support for `html` inside the template literal. Using this extension, you can drastically enhance `Polymer` development experience or just add `HTML` support inside an `es6` template string.
+**v0.2.0 Update**
+Now you can also get full `css` language support using `/*css*/`, `css` 🙃.
+
+Use `/*html*/` or `html` followed by the backtick \` character inside a `Javascript` or `Typescript` file to get full editor support for `html` inside the template literal. Using this extension, you can drastically enhance `Polymer` development experience or just add `HTML` support inside an `ES6` template string.
 
 ## Contributing
 
