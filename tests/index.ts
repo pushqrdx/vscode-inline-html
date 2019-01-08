@@ -1,36 +1,64 @@
-import {
-	CustomElement,
-	ExtendedHTMLElement,
-	html,
-	Property
-} from './void/extended-element';
+// @ts-ignore
 
-@CustomElement('child-component')
-class ChildComponent extends ExtendedHTMLElement {
-	@Property({ observed: true, attribute: 'child-stars' })
-	stars: number = 0;
+html()
+{
+	// @ts-ignore
 
-	@Property({ private: true })
-	private: number = 5;
+	html`
+		<style>
+			:host {
+				display: block;
+			}
+		</style>
+		
+		<input type="button" @click=${(e) => this.click(e)} value="deadmau5 🐭" />
+		
+		<h3>${ ['❤️', '💛', '💚', '💙', '💜', '🖤'] }</h3>
+	`;
+	
+	/* html */`
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div>
+			<p></p>
+		</div>
+	`;
+}
 
-	@Property() 
-	hearts: string[] = ['❤️', '💛', '💚', '💙', '💜', '🖤'];
+// @ts-ignore
 
-	template() {
-		return html`
-			<style>
-                :host {
-                    display: block;
-                }
-			</style>
+bug()
+{
+	// @ts-ignore
 
-			<input type="button" @click=${(e)=>this.clickMe(e)} value="Click me" />
-			
-            <h3>${this.stars}</h3>
-        `;
-	}
+	html`div...`;
+}
 
-	bug() {
-		return html`div...`;
-	}
+// @ts-ignore
+
+css()
+{
+	// @ts-ignore
+	
+	css`
+		:host {
+			display: block;
+		}
+	`;
+
+	/* css */`
+		:host {
+			display: block;
+			height: 50px;
+		}
+	`;
+
+	// MORE SPACES
+	/*    css    */`
+		:host {
+			display: block;
+		}
+	`;
 }

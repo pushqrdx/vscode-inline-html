@@ -6,11 +6,13 @@ import {
 	CompletionItem,
 	Command
 } from 'vscode'
+
 import {
 	TextDocument as HtmlTextDocument,
 	LanguageService,
-	TokenType
+	TokenType as HtmlTokenType
 } from 'vscode-html-languageservice'
+
 import { EmmetConfiguration } from 'vscode-emmet-helper'
 
 export function GetEmmetConfiguration(): EmmetConfiguration {
@@ -56,11 +58,11 @@ export function GetLanguageRegions(
 ): IEmbeddedRegion[] {
 	const scanner = service.createScanner(data)
 	const regions: IEmbeddedRegion[] = []
-	let tokenType: TokenType
+	let tokenType: HtmlTokenType
 
-	while ((tokenType = scanner.scan()) !== TokenType.EOS) {
+	while ((tokenType = scanner.scan()) !== HtmlTokenType.EOS) {
 		switch (tokenType) {
-			case TokenType.Styles:
+			case HtmlTokenType.Styles:
 				regions.push({
 					languageId: 'css',
 					start: scanner.getTokenOffset(),

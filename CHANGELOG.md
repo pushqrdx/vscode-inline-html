@@ -4,4 +4,6 @@
 | ------- | -------- | ------ |
 | 0.0.1 | 04.10.2018 | Release Preview |
 | 0.1.0 | 12.22.2018 | Added ability to have spaces in a commented html function, so /* html */ is now possible. |
+| 0.2.0 | 01.08.2019 | Added CSS language support. |
+
 

@@ -2,7 +2,7 @@
 	"name": "inline-html",
 	"displayName": "Inline HTML",
 	"description": "Intellisense, Emmet and Syntax Highlighting for html/css inside ES6 Template Strings.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "pushqrdx",
 	"license": "MIT",
 	"icon": "docs/logo.png",
@@ -48,13 +48,27 @@
 					"source.js.jsx",
 					"source.jsx",
 					"source.ts",
-					"source.tsx",
-					"text.html.basic"
+					"source.tsx"
 				],
 				"scopeName": "es6.inline.html",
 				"path": "./syntaxes/es6.inline.html.json",
 				"embeddedLanguages": {
 					"meta.embedded.block.html": "html",
+					"meta.template.expression.ts": "typescript"
+				}
+			},
+			{
+				"injectTo": [
+					"source.js",
+					"source.js.jsx",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				],
+				"scopeName": "es6.inline.css",
+				"path": "./syntaxes/es6.inline.css.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.css": "css",
 					"meta.template.expression.ts": "typescript"
 				}
 			}

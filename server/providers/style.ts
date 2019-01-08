@@ -4,28 +4,38 @@ import {
 	TextDocument,
 	Position,
 	CancellationToken,
-	CompletionItemProvider
+	CompletionItemProvider,
+	TextLine
 } from 'vscode'
 
 import {
-	getCSSLanguageService as GetCSSLanguageService,
-	LanguageService as CSSLanguageService,
-	CompletionList as CSSCompletionList
+	getLanguageService as GetHTMLanguageService,
+	LanguageService as HTMLanguageService,
+	CompletionList as HTMLCompletionList
+} from 'vscode-html-languageservice'
+
+import {
+	getCSSLanguageService as GetCssLanguageService,
+	LanguageService as CssLanguageService
 } from 'vscode-css-languageservice'
 
 import * as emmet from 'vscode-emmet-helper'
+
 import {
 	GetEmmetConfiguration,
 	MatchOffset,
 	CreateVirtualDocument,
-	TranslateCompletionItems
+	TranslateCompletionItems,
+	GetLanguageRegions,
+	GetRegionAtOffset
 } from '../util'
 
 import { CompletionsCache } from '../cache'
 
-export class CSSCompletionItemProvider implements CompletionItemProvider {
-	private _CSSLanguageService: CSSLanguageService = GetCSSLanguageService()
-	private _expression =  /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
+export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
+	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
+	private _HTMLanguageService: HTMLanguageService = GetHTMLanguageService()
+	private _htmlExpression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(
@@ -52,8 +62,8 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 		const currentLineText = currentLine.text.trim()
 		const currentOffset = document.offsetAt(position)
 		const documentText = document.getText()
-		const match = MatchOffset(this._expression, documentText, currentOffset)
-
+		const match = MatchOffset(this._htmlExpression, documentText, currentOffset)
+		
 		if (!match) {
 			return empty
 		}
@@ -62,16 +72,31 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 		const matchContent: string = match[2]
 		const matchStartOffset = match.index + match[1].length
 		const matchEndOffset = match.index + match[0].length
-		const matchPosition = document.positionAt(matchStartOffset)
-		const virtualOffset = currentOffset - matchStartOffset
-		const virtualDocument = CreateVirtualDocument('html', matchContent)
-		const vHtml = this._CSSLanguageService.parseStylesheet(virtualDocument)
-		const emmetResults: CSSCompletionList = {
+		const regions = GetLanguageRegions(this._HTMLanguageService, matchContent)
+
+		if (regions.length <= 0) {
+			return empty
+		}
+
+		const region = GetRegionAtOffset(regions, currentOffset - matchStartOffset)
+
+		if (!region) {
+			return empty
+		}
+
+		const virtualOffset = currentOffset - (matchStartOffset + region.start)
+		const virtualDocument = CreateVirtualDocument(
+			'css',
+			matchContent.slice(region.start, region.end)
+		)
+
+		const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument)
+		const emmetResults: HTMLCompletionList = {
 			isIncomplete: true,
 			items: []
 		}
 
-		this._CSSLanguageService.setCompletionParticipants([
+		this._cssLanguageService.setCompletionParticipants([
 			emmet.getEmmetCompletionParticipants(
 				virtualDocument,
 				virtualDocument.positionAt(virtualOffset),
@@ -81,10 +106,10 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 			)
 		])
 
-		const completions = this._CSSLanguageService.doComplete(
+		const completions = this._cssLanguageService.doComplete(
 			virtualDocument,
 			virtualDocument.positionAt(virtualOffset),
-			vHtml
+			stylesheet
 		)
 
 		if (emmetResults.items.length) {
@@ -96,7 +121,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 
 		return {
 			isIncomplete: completions.isIncomplete,
-			items: TranslateCompletionItems(completions.items, currentLine, true)
+			items: TranslateCompletionItems(completions.items, currentLine)
 		} as CompletionList
 	}
 

@@ -1,16 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const vscode_html_languageservice_1 = require("vscode-html-languageservice");
 const vscode_css_languageservice_1 = require("vscode-css-languageservice");
 const emmet = require("vscode-emmet-helper");
 const util_1 = require("../util");
 const cache_1 = require("../cache");
-class CssCompletionItemProvider {
+class CSSCompletionItemProvider {
     constructor() {
-        this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
-        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g;
-        // private _expression = /(html\s*`)([^`]*)(`)/g
+        this._CSSLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
+        this._expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
         this._cache = new cache_1.CompletionsCache();
     }
     provideCompletionItems(document, position, token) {
@@ -18,11 +15,11 @@ class CssCompletionItemProvider {
         if (cached) {
             return cached;
         }
+        const currentLine = document.lineAt(position.line);
         const empty = {
             isIncomplete: false,
             items: []
         };
-        const currentLine = document.lineAt(position.line);
         if (currentLine.isEmptyOrWhitespace) {
             return empty;
         }
@@ -37,25 +34,18 @@ class CssCompletionItemProvider {
         const matchContent = match[2];
         const matchStartOffset = match.index + match[1].length;
         const matchEndOffset = match.index + match[0].length;
-        const regions = util_1.GetLanguageRegions(this._htmlLanguageService, matchContent);
-        if (regions.length <= 0) {
-            return empty;
-        }
-        const region = util_1.GetRegionAtOffset(regions, currentOffset - matchStartOffset);
-        if (!region) {
-            return empty;
-        }
-        const virtualOffset = currentOffset - (matchStartOffset + region.start);
-        const virtualDocument = util_1.CreateVirtualDocument('css', matchContent.slice(region.start, region.end));
-        const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument);
+        const matchPosition = document.positionAt(matchStartOffset);
+        const virtualOffset = currentOffset - matchStartOffset;
+        const virtualDocument = util_1.CreateVirtualDocument('html', matchContent);
+        const vHtml = this._CSSLanguageService.parseStylesheet(virtualDocument);
         const emmetResults = {
             isIncomplete: true,
             items: []
         };
-        this._cssLanguageService.setCompletionParticipants([
+        this._CSSLanguageService.setCompletionParticipants([
             emmet.getEmmetCompletionParticipants(virtualDocument, virtualDocument.positionAt(virtualOffset), 'css', util_1.GetEmmetConfiguration(), emmetResults)
         ]);
-        const completions = this._cssLanguageService.doComplete(virtualDocument, virtualDocument.positionAt(virtualOffset), stylesheet);
+        const completions = this._CSSLanguageService.doComplete(virtualDocument, virtualDocument.positionAt(virtualOffset), vHtml);
         if (emmetResults.items.length) {
             completions.items.push(...emmetResults.items);
             completions.isIncomplete = true;
@@ -63,12 +53,12 @@ class CssCompletionItemProvider {
         this._cache.updateCached(document, position, completions);
         return {
             isIncomplete: completions.isIncomplete,
-            items: util_1.TranslateCompletionItems(completions.items, currentLine)
+            items: util_1.TranslateCompletionItems(completions.items, currentLine, true)
         };
     }
     resolveCompletionItem(item, token) {
         return item;
     }
 }
-exports.CssCompletionItemProvider = CssCompletionItemProvider;
+exports.CSSCompletionItemProvider = CSSCompletionItemProvider;
 //# sourceMappingURL=css.js.map
