@@ -1,6 +1,7 @@
 **/*.ts
 **/tsconfig.json
 server/**
+tests/**
 .vscode/**
 .gitignore
 .git

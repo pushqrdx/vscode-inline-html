@@ -7,5 +7,5 @@
 		"rootDir": "server",
 		"lib": ["es2016"]
 	},
-	"exclude": ["client", "node_modules"]
+	"exclude": ["client", "node_modules", "tests"]
 }

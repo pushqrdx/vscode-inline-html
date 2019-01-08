@@ -8,22 +8,24 @@ import {
 } from 'vscode'
 
 import {
-	getLanguageService as GetHtmlLanguageService,
-	LanguageService as HtmlLanguageService,
-	CompletionList as HtmlCompletionList
+	getLanguageService as GetHTMLanguageService,
+	LanguageService as HTMLanguageService,
+	CompletionList as HTMLCompletionList
 } from 'vscode-html-languageservice'
 
 import * as emmet from 'vscode-emmet-helper'
+
 import {
 	GetEmmetConfiguration,
 	MatchOffset,
 	CreateVirtualDocument,
 	TranslateCompletionItems
 } from '../util'
+
 import { CompletionsCache } from '../cache'
 
-export class HtmlCompletionItemProvider implements CompletionItemProvider {
-	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
+export class HTMLCompletionItemProvider implements CompletionItemProvider {
+	private _htmlLanguageService: HTMLanguageService = GetHTMLanguageService()
 	private _expression =  /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g
 	// private _expression = /(html\s*`)([^`]*)(`)/g
 	private _cache = new CompletionsCache()
@@ -34,15 +36,16 @@ export class HtmlCompletionItemProvider implements CompletionItemProvider {
 		token: CancellationToken
 	): CompletionList {
 		const cached = this._cache.getCached(document, position)
+
 		if (cached) {
 			return cached
 		}
 
+		const currentLine = document.lineAt(position.line)
 		const empty = {
 			isIncomplete: false,
 			items: []
 		} as CompletionList
-		const currentLine = document.lineAt(position.line)
 
 		if (currentLine.isEmptyOrWhitespace) {
 			return empty
@@ -51,7 +54,6 @@ export class HtmlCompletionItemProvider implements CompletionItemProvider {
 		const currentLineText = currentLine.text.trim()
 		const currentOffset = document.offsetAt(position)
 		const documentText = document.getText()
-
 		const match = MatchOffset(this._expression, documentText, currentOffset)
 
 		if (!match) {
@@ -63,13 +65,10 @@ export class HtmlCompletionItemProvider implements CompletionItemProvider {
 		const matchStartOffset = match.index + match[1].length
 		const matchEndOffset = match.index + match[0].length
 		const matchPosition = document.positionAt(matchStartOffset)
-
 		const virtualOffset = currentOffset - matchStartOffset
 		const virtualDocument = CreateVirtualDocument('html', matchContent)
-
 		const vHtml = this._htmlLanguageService.parseHTMLDocument(virtualDocument)
-
-		const emmetResults: HtmlCompletionList = {
+		const emmetResults: HTMLCompletionList = {
 			isIncomplete: true,
 			items: []
 		}
