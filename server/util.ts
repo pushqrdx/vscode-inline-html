@@ -1,6 +1,7 @@
 import {
 	workspace,
 	TextLine,
+	TextEdit,
 	Position,
 	Range,
 	CompletionItem,
@@ -8,9 +9,10 @@ import {
 } from 'vscode'
 
 import {
-	TextDocument as HtmlTextDocument,
+	TextDocument as HTMLTextDocument,
 	LanguageService,
-	TokenType as HtmlTokenType
+	TokenType as HTMLTokenType,
+	TextEdit as HTMLTextEdit
 } from 'vscode-html-languageservice'
 
 import { EmmetConfiguration } from 'vscode-emmet-helper'
@@ -58,11 +60,11 @@ export function GetLanguageRegions(
 ): IEmbeddedRegion[] {
 	const scanner = service.createScanner(data)
 	const regions: IEmbeddedRegion[] = []
-	let tokenType: HtmlTokenType
+	let tokenType: HTMLTokenType
 
-	while ((tokenType = scanner.scan()) !== HtmlTokenType.EOS) {
+	while ((tokenType = scanner.scan()) !== HTMLTokenType.EOS) {
 		switch (tokenType) {
-			case HtmlTokenType.Styles:
+			case HTMLTokenType.Styles:
 				regions.push({
 					languageId: 'css',
 					start: scanner.getTokenOffset(),
@@ -91,6 +93,17 @@ export function GetRegionAtOffset(
 		}
 	}
 	return null
+}
+
+export function TranslateHTMLTextEdits(
+	input: HTMLTextEdit[]
+): TextEdit[] {
+	return input.map((item: HTMLTextEdit) => {
+		const startPosition = new Position(item.range.start.line, item.range.start.character);
+		const endPosition = new Position(item.range.end.line, item.range.end.character);
+		const itemRange = new Range(startPosition, endPosition);
+		return new TextEdit(itemRange, item.newText)
+	})
 }
 
 export function TranslateCompletionItems(
@@ -123,12 +136,12 @@ export function TranslateCompletionItems(
 }
 
 export function CreateVirtualDocument(
-	// context: TextDocument | HtmlTextDocument,
+	// context: TextDocument | HTMLTextDocument,
 	languageId: string,
 	// position: Position | HtmlPosition,
 	content: string
-): HtmlTextDocument {
-	const doc = HtmlTextDocument.create(
+): HTMLTextDocument {
+	const doc = HTMLTextDocument.create(
 		`embedded://document.${languageId}`,
 		languageId,
 		1,

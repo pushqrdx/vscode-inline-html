@@ -10,12 +10,18 @@ html()
 				display: block;
 			}
 		</style>
+
+		<body>
+			<input type="button" @click=${(e) => this.click(e)} value="deadmau5 🐭" />
 		
-		<input type="button" @click=${(e) => this.click(e)} value="deadmau5 🐭" />
+			<div></div>
+			<div></div>
+			<div></div>
 		
-		<h3>${ ['❤️', '💛', '💚', '💙', '💜', '🖤'] }</h3>
+			<h3>${ ['❤️', '💛', '💚', '💙', '💜', '🖤']}</h3>
+		</body>
 	`;
-	
+
 	/* html */`
 		<div></div>
 		<div></div>
@@ -41,7 +47,7 @@ bug()
 css()
 {
 	// @ts-ignore
-	
+
 	css`
 		:host {
 			display: block;
