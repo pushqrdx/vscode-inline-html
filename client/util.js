@@ -66,6 +66,15 @@ function GetRegionAtOffset(regions, offset) {
     return null;
 }
 exports.GetRegionAtOffset = GetRegionAtOffset;
+function TranslateHTMLTextEdits(input) {
+    return input.map((item) => {
+        const startPosition = new vscode_1.Position(item.range.start.line, item.range.start.character);
+        const endPosition = new vscode_1.Position(item.range.end.line, item.range.end.character);
+        const itemRange = new vscode_1.Range(startPosition, endPosition);
+        return new vscode_1.TextEdit(itemRange, item.newText);
+    });
+}
+exports.TranslateHTMLTextEdits = TranslateHTMLTextEdits;
 function TranslateCompletionItems(items, line, expand = false) {
     return items.map(item => {
         const result = item;
@@ -85,7 +94,7 @@ function TranslateCompletionItems(items, line, expand = false) {
 }
 exports.TranslateCompletionItems = TranslateCompletionItems;
 function CreateVirtualDocument(
-// context: TextDocument | HtmlTextDocument,
+// context: TextDocument | HTMLTextDocument,
 languageId, 
 // position: Position | HtmlPosition,
 content) {
