@@ -1,4 +1,5 @@
 **/*.vsix
+**/*.js.map
 node_modules
 .vscode
 .DS_STORE

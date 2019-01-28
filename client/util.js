@@ -32,6 +32,15 @@ function MatchOffset(regex, data, offset) {
     return null;
 }
 exports.MatchOffset = MatchOffset;
+function Match(regex, data) {
+    regex.exec(null);
+    let match;
+    while ((match = regex.exec(data)) !== null) {
+        return match;
+    }
+    return null;
+}
+exports.Match = Match;
 function GetLanguageRegions(service, data) {
     const scanner = service.createScanner(data);
     const regions = [];
@@ -42,7 +51,9 @@ function GetLanguageRegions(service, data) {
                 regions.push({
                     languageId: 'css',
                     start: scanner.getTokenOffset(),
-                    end: scanner.getTokenEnd()
+                    end: scanner.getTokenEnd(),
+                    length: scanner.getTokenLength(),
+                    content: scanner.getTokenText()
                 });
                 break;
             default:
@@ -66,17 +77,17 @@ function GetRegionAtOffset(regions, offset) {
     return null;
 }
 exports.GetRegionAtOffset = GetRegionAtOffset;
-function TranslateHTMLTextEdits(input) {
+function TranslateHTMLTextEdits(input, offset) {
     return input.map((item) => {
-        const startPosition = new vscode_1.Position(item.range.start.line, item.range.start.character);
-        const endPosition = new vscode_1.Position(item.range.end.line, item.range.end.character);
+        const startPosition = new vscode_1.Position(item.range.start.line + offset, item.range.start.character);
+        const endPosition = new vscode_1.Position(item.range.end.line + offset - 1, item.range.end.character);
         const itemRange = new vscode_1.Range(startPosition, endPosition);
         return new vscode_1.TextEdit(itemRange, item.newText);
     });
 }
 exports.TranslateHTMLTextEdits = TranslateHTMLTextEdits;
 function TranslateCompletionItems(items, line, expand = false) {
-    return items.map(item => {
+    return items.map((item) => {
         const result = item;
         const range = new vscode_1.Range(new vscode_1.Position(line.lineNumber, result.textEdit.range.start.character), new vscode_1.Position(line.lineNumber, result.textEdit.range.end.character));
         result.textEdit = null;

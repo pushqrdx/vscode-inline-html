@@ -54,6 +54,19 @@ export function MatchOffset(
 	return null
 }
 
+export function Match(
+	regex: RegExp,
+	data: string
+): RegExpMatchArray {
+	regex.exec(null)
+
+	let match: RegExpExecArray
+	while ((match = regex.exec(data)) !== null) {
+		return match
+	}
+	return null
+}
+
 export function GetLanguageRegions(
 	service: LanguageService,
 	data: string
@@ -61,14 +74,16 @@ export function GetLanguageRegions(
 	const scanner = service.createScanner(data)
 	const regions: IEmbeddedRegion[] = []
 	let tokenType: HTMLTokenType
-
+	
 	while ((tokenType = scanner.scan()) !== HTMLTokenType.EOS) {
 		switch (tokenType) {
 			case HTMLTokenType.Styles:
 				regions.push({
 					languageId: 'css',
 					start: scanner.getTokenOffset(),
-					end: scanner.getTokenEnd()
+					end: scanner.getTokenEnd(),
+					length: scanner.getTokenLength(),
+					content: scanner.getTokenText()
 				})
 				break
 			default:
@@ -96,12 +111,13 @@ export function GetRegionAtOffset(
 }
 
 export function TranslateHTMLTextEdits(
-	input: HTMLTextEdit[]
+	input: HTMLTextEdit[],
+	offset: number
 ): TextEdit[] {
 	return input.map((item: HTMLTextEdit) => {
-		const startPosition = new Position(item.range.start.line, item.range.start.character);
-		const endPosition = new Position(item.range.end.line, item.range.end.character);
-		const itemRange = new Range(startPosition, endPosition);
+		const startPosition = new Position(item.range.start.line + offset, item.range.start.character);
+		const endPosition = new Position(item.range.end.line + offset - 1, item.range.end.character);
+		const itemRange = new Range(startPosition, endPosition); 
 		return new TextEdit(itemRange, item.newText)
 	})
 }
@@ -111,7 +127,7 @@ export function TranslateCompletionItems(
 	line: TextLine,
 	expand: boolean = false
 ): CompletionItem[] {
-	return items.map(item => {
+	return items.map((item: CompletionItem) => {
 		const result = item as CompletionItem
 		const range = new Range(
 			new Position(line.lineNumber, result.textEdit.range.start.character),
@@ -155,4 +171,6 @@ export interface IEmbeddedRegion {
 	languageId: string
 	start: number
 	end: number
+	length: number
+	content: string
 }

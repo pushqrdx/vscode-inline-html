@@ -1,11 +1,12 @@
-import { languages as Languages } from 'vscode'
+import { languages as Languages, ExtensionContext, commands as Commands } from 'vscode'
 import { HTMLCompletionItemProvider } from './providers/html'
 import { CSSCompletionItemProvider, HTMLStyleCompletionItemProvider } from './providers/css'
 import { HTMLHoverProvider, CSSHoverProvider } from './providers/hover'
-import { InlineFormattingProvider } from './providers/formatting'
+import { CodeFormatterProvider } from './providers/formatting'
 
-export function activate() {
-	//Languages.registerDocumentRangeFormattingEditProvider(['typescript', 'javascript'], new InlineFormattingProvider())
+export function activate(Context: ExtensionContext) {
+	new CodeFormatterProvider()
+
 	Languages.registerCompletionItemProvider(
 		['typescript', 'javascript'],
 		new HTMLCompletionItemProvider(),

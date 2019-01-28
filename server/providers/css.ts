@@ -40,7 +40,7 @@ export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 	public provideCompletionItems(
 		document: TextDocument,
 		position: Position,
-		token: CancellationToken
+		_token: CancellationToken
 	): CompletionList {
 		const cached = this._cache.getCached(document, position)
 
@@ -86,7 +86,7 @@ export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 		const virtualOffset = currentOffset - (matchStartOffset + region.start)
 		const virtualDocument = CreateVirtualDocument(
 			'css',
-			matchContent.slice(region.start, region.end)
+			region.content
 		)
 
 		const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument)
@@ -126,7 +126,7 @@ export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 
 	public resolveCompletionItem?(
 		item: CompletionItem,
-		token: CancellationToken
+		_token: CancellationToken
 	): CompletionItem | Thenable<CompletionItem> {
 		return item
 	}
@@ -140,7 +140,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 	public provideCompletionItems(
 		document: TextDocument,
 		position: Position,
-		token: CancellationToken
+		_token: CancellationToken
 	): CompletionList {
 		const cached = this._cache.getCached(document, position)
 
@@ -211,7 +211,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 
 	public resolveCompletionItem?(
 		item: CompletionItem,
-		token: CancellationToken
+		_token: CancellationToken
 	): CompletionItem | Thenable<CompletionItem> {
 		return item
 	}
