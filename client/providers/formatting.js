@@ -13,6 +13,7 @@ class InlineFormattingProvider {
         if (!match) {
             return [];
         }
+        // ! Fix - exclude <style> tags from formatting because it get's messed up  
         return util_1.TranslateHTMLTextEdits(vscode_html_languageservice_1.getLanguageService().format(util_1.CreateVirtualDocument('html', document.getText()), range, {
             indentInnerHtml: false
         }));

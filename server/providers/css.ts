@@ -173,8 +173,8 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 		const matchEndOffset = match.index + match[0].length
 		const matchPosition = document.positionAt(matchStartOffset)
 		const virtualOffset = currentOffset - matchStartOffset
-		const virtualDocument = CreateVirtualDocument('html', matchContent)
-		const vHtml = this._CSSLanguageService.parseStylesheet(virtualDocument)
+		const virtualDocument = CreateVirtualDocument('css', matchContent)
+		const vCss = this._CSSLanguageService.parseStylesheet(virtualDocument)
 		const emmetResults: CSSCompletionList = {
 			isIncomplete: true,
 			items: []
@@ -193,7 +193,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 		const completions = this._CSSLanguageService.doComplete(
 			virtualDocument,
 			virtualDocument.positionAt(virtualOffset),
-			vHtml
+			vCss
 		)
 
 		if (emmetResults.items.length) {
@@ -205,7 +205,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 
 		return {
 			isIncomplete: completions.isIncomplete,
-			items: TranslateCompletionItems(completions.items, currentLine, true)
+			items: TranslateCompletionItems(completions.items, currentLine)
 		} as CompletionList
 	}
 
