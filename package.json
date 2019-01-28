@@ -2,7 +2,7 @@
 	"name": "inline-html",
 	"displayName": "Inline HTML",
 	"description": "IntelliSense, Emmet and Syntax Highlighting for html/css inside ES6 Template Strings.",
-	"version": "0.2.5",
+	"version": "0.3.0",
 	"publisher": "pushqrdx",
 	"license": "MIT",
 	"icon": "docs/logo.png",
@@ -43,6 +43,12 @@
 	],
 	"main": "./client/main",
 	"contributes": {
+		"commands": [
+			{
+				"command": "editor.action.formatInlineHtml",
+				"title": "Format Inline HTML/CSS"
+			}
+		],
 		"grammars": [
 			{
 				"injectTo": [
@@ -86,5 +92,10 @@
 		"vscode-css-languageservice": "^3.0.7",
 		"vscode-emmet-helper": "^1.2.0",
 		"vscode-html-languageservice": "^2.1.1"
+	},
+	"__metadata": {
+		"id": "926ba2ee-eff4-40d0-a87b-af6b6e3d99fd",
+		"publisherDisplayName": "pushqrdx",
+		"publisherId": "8682fc96-b232-43f5-88d8-958a7ff39b52"
 	}
 }

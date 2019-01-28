@@ -12,7 +12,7 @@ class HTMLStyleCompletionItemProvider {
         this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g;
         this._cache = new cache_1.CompletionsCache();
     }
-    provideCompletionItems(document, position, token) {
+    provideCompletionItems(document, position, _token) {
         const cached = this._cache.getCached(document, position);
         if (cached) {
             return cached;
@@ -45,7 +45,7 @@ class HTMLStyleCompletionItemProvider {
             return empty;
         }
         const virtualOffset = currentOffset - (matchStartOffset + region.start);
-        const virtualDocument = util_1.CreateVirtualDocument('css', matchContent.slice(region.start, region.end));
+        const virtualDocument = util_1.CreateVirtualDocument('css', region.content);
         const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument);
         const emmetResults = {
             isIncomplete: true,
@@ -65,7 +65,7 @@ class HTMLStyleCompletionItemProvider {
             items: util_1.TranslateCompletionItems(completions.items, currentLine)
         };
     }
-    resolveCompletionItem(item, token) {
+    resolveCompletionItem(item, _token) {
         return item;
     }
 }
@@ -76,7 +76,7 @@ class CSSCompletionItemProvider {
         this._expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
         this._cache = new cache_1.CompletionsCache();
     }
-    provideCompletionItems(document, position, token) {
+    provideCompletionItems(document, position, _token) {
         const cached = this._cache.getCached(document, position);
         if (cached) {
             return cached;
@@ -122,7 +122,7 @@ class CSSCompletionItemProvider {
             items: util_1.TranslateCompletionItems(completions.items, currentLine)
         };
     }
-    resolveCompletionItem(item, token) {
+    resolveCompletionItem(item, _token) {
         return item;
     }
 }

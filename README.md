@@ -1,11 +1,14 @@
 <h2 align="center"><img src="https://github.com/pushqrdx/vscode-inline-html/raw/master/docs/logo.png" height="256"><br>Inline HTML</h2>
-<p align="center">Syntax Highlight, Emmet, IntelliSense support for ES6 Template Strings.</p>
+<p align="center">Syntax Highlight, Emmet, IntelliSense support for HTML/CSS in ES6 Template Strings.</p>
 
 ## Example
 
 ![](https://github.com/pushqrdx/vscode-inline-html/raw/master/docs/demo.gif)
 
 ## Usage
+
+**v0.3.0 Update**
+Preliminary code formatting support 👌.
 
 **v0.2.0 Update**
 Now you can also get full `css` language support using `/*css*/`, `css` 🙃.
