@@ -102,8 +102,8 @@ class CSSCompletionItemProvider {
         const matchEndOffset = match.index + match[0].length;
         const matchPosition = document.positionAt(matchStartOffset);
         const virtualOffset = currentOffset - matchStartOffset;
-        const virtualDocument = util_1.CreateVirtualDocument('html', matchContent);
-        const vHtml = this._CSSLanguageService.parseStylesheet(virtualDocument);
+        const virtualDocument = util_1.CreateVirtualDocument('css', matchContent);
+        const vCss = this._CSSLanguageService.parseStylesheet(virtualDocument);
         const emmetResults = {
             isIncomplete: true,
             items: []
@@ -111,7 +111,7 @@ class CSSCompletionItemProvider {
         this._CSSLanguageService.setCompletionParticipants([
             emmet.getEmmetCompletionParticipants(virtualDocument, virtualDocument.positionAt(virtualOffset), 'css', util_1.GetEmmetConfiguration(), emmetResults)
         ]);
-        const completions = this._CSSLanguageService.doComplete(virtualDocument, virtualDocument.positionAt(virtualOffset), vHtml);
+        const completions = this._CSSLanguageService.doComplete(virtualDocument, virtualDocument.positionAt(virtualOffset), vCss);
         if (emmetResults.items.length) {
             completions.items.push(...emmetResults.items);
             completions.isIncomplete = true;
@@ -119,7 +119,7 @@ class CSSCompletionItemProvider {
         this._cache.updateCached(document, position, completions);
         return {
             isIncomplete: completions.isIncomplete,
-            items: util_1.TranslateCompletionItems(completions.items, currentLine, true)
+            items: util_1.TranslateCompletionItems(completions.items, currentLine)
         };
     }
     resolveCompletionItem(item, token) {
