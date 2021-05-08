@@ -7,8 +7,11 @@
 
 ## Usage
 
+**v0.3.1 Update**
+Back to working state.
+
 **v0.3.0 Update**
-Preliminary code formatting support 👌.
+Preliminary code formatting support.
 
 **v0.2.0 Update**
 Now you can also get full `css` language support using `/*css*/`, `css` 🙃.
