@@ -1,9 +1,7 @@
 // @ts-ignore
-
 html()
 {
 	// @ts-ignore
-
 	html`
 		<style>
 			:host {
@@ -17,7 +15,7 @@ html()
 			<div></div>
 			<div></div>
 			<div></div>
-		
+
 			<h3>${ ['❤️', '💛', '💚', '💙', '💜', '🖤']}</h3>
 		</body>
 	`;
@@ -34,20 +32,16 @@ html()
 }
 
 // @ts-ignore
-
 bug()
 {
 	// @ts-ignore
-
 	html`div...`;
 }
 
 // @ts-ignore
-
 css()
 {
 	// @ts-ignore
-
 	css`
 		:host {
 			display: block;
