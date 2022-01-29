@@ -84,9 +84,9 @@
 	"devDependencies": {
 		"@types/node": "7.0.43",
 		"@types/vscode": "^1.22.0",
-		"vscode-languageserver-types": "^3.6.0",
 		"typescript": "^3.2.2",
-		"vsce": "^2.6.3"
+		"vsce": "^1.102.0",
+		"vscode-languageserver-types": "^3.6.0"
 	},
 	"dependencies": {
 		"vscode-css-languageservice": "^3.0.7",
