@@ -9,4 +9,5 @@
 | 0.3.0 | 01.30.2019 | Preliminary formatting support. |
 | 0.3.1 | 05.08.2021 | Back to working state. |
 | 0.3.2 | 01.21.2022 | Allow non-whitespace before html tag thanks to @P-Froggy. |
+| 0.3.5 | 01.29.2022 | Revert @P-Froggy change while still allowing non-whitespace before tags. |
 
