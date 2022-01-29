@@ -1,7 +1,5 @@
-// @ts-ignore
 html()
 {
-	// @ts-ignore
 	html`
 		<style>
 			:host {
@@ -16,7 +14,7 @@ html()
 			<div></div>
 			<div></div>
 
-			<h3>${ ['❤️', '💛', '💚', '💙', '💜', '🖤']}</h3>
+			<h3>${['❤️', '💛', '💚', '💙', '💜', '🖤']}</h3>
 		</body>
 	`;
 
@@ -29,19 +27,23 @@ html()
 			<p></p>
 		</div>
 	`;
+
+	bug(/*   html*/`
+		<div></div>
+	`);
+
+	bug(html`
+		<div></div>
+	`);
 }
 
-// @ts-ignore
 bug()
 {
-	// @ts-ignore
 	html`div...`;
 }
 
-// @ts-ignore
 css()
 {
-	// @ts-ignore
 	css`
 		:host {
 			display: block;
@@ -55,10 +57,21 @@ css()
 		}
 	`;
 
-	// MORE SPACES
 	/*    css    */`
 		:host {
 			display: block;
 		}
 	`;
+
+	bug(/*css  */`
+		:host {
+			display: block;
+		}
+	`)
+
+	bug(css`
+		:host {
+			display: block;
+		}
+	`)
 }

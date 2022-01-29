@@ -1,7 +1,11 @@
 {
-	"fileTypes": ["js", "jsx", "ts", "tsx"],
-	"injectionSelector":
-		"L:source.js -comment -string, L:source.jsx -comment -string, L:source.js.jsx -comment -string, L:source.ts -comment -string, L:source.js (string.quoted.double.html, string.quoted.single.html), L:source.jsx (string.quoted.double.html, string.quoted.single.html), L:source.js.jsx (string.quoted.double.html, string.quoted.single.html), L:source.ts (string.quoted.double.html, string.quoted.single.html), L:source.tsx (string.quoted.double.html, string.quoted.single.html)",
+	"fileTypes": [
+		"js",
+		"jsx",
+		"ts",
+		"tsx"
+	],
+	"injectionSelector": "L:source.js -comment -string, L:source.jsx -comment -string, L:source.js.jsx -comment -string, L:source.ts -comment -string, L:source.js (string.quoted.double.html, string.quoted.single.html), L:source.jsx (string.quoted.double.html, string.quoted.single.html), L:source.js.jsx (string.quoted.double.html, string.quoted.single.html), L:source.ts (string.quoted.double.html, string.quoted.single.html), L:source.tsx (string.quoted.double.html, string.quoted.single.html)",
 	"injections": {
 		"L:source": {
 			"patterns": [
