@@ -1,7 +1,13 @@
 {
-	"fileTypes": ["js", "jsx", "ts", "tsx"],
+	"fileTypes": [
+		"js",
+		"jsx",
+		"ts",
+		"tsx"
+	],
 	"injectionSelector": "L:source.js -comment -string, L:source.jsx -comment -string, L:source.js.jsx -comment -string, L:source.ts -comment -string, L:source.js (string.quoted.double.html, string.quoted.single.html), L:source.jsx (string.quoted.double.html, string.quoted.single.html), L:source.js.jsx (string.quoted.double.html, string.quoted.single.html), L:source.ts (string.quoted.double.html, string.quoted.single.html), L:source.tsx (string.quoted.double.html, string.quoted.single.html)",
-	"patterns": [{
+	"patterns": [
+		{
 			"contentName": "meta.embedded.block.css",
 			"begin": "(?x)(\\s+?(\\w+\\.)?(?:css|\/\\*\\s*css\\s*\\*\/)\\s*)(`)",
 			"beginCaptures": {
@@ -18,7 +24,8 @@
 					"name": "string.template.ts, punctuation.definition.string.template.end.ts"
 				}
 			},
-			"patterns": [{
+			"patterns": [
+				{
 					"include": "source.ts#template-substitution-element"
 				},
 				{
