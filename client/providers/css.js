@@ -73,7 +73,7 @@ exports.HTMLStyleCompletionItemProvider = HTMLStyleCompletionItemProvider;
 class CSSCompletionItemProvider {
     constructor() {
         this._CSSLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
         this._cache = new cache_1.CompletionsCache();
     }
     provideCompletionItems(document, position, _token) {
@@ -96,20 +96,21 @@ class CSSCompletionItemProvider {
         if (!match) {
             return empty;
         }
+        const dialect = match[2];
         // tslint:disable-next-line:no-magic-numbers
-        const matchContent = match[2];
+        const matchContent = match[3];
         const matchStartOffset = match.index + match[1].length;
         const matchEndOffset = match.index + match[0].length;
         const matchPosition = document.positionAt(matchStartOffset);
         const virtualOffset = currentOffset - matchStartOffset;
-        const virtualDocument = util_1.CreateVirtualDocument('css', matchContent);
+        const virtualDocument = util_1.CreateVirtualDocument(dialect, matchContent);
         const vCss = this._CSSLanguageService.parseStylesheet(virtualDocument);
         const emmetResults = {
             isIncomplete: true,
             items: []
         };
         this._CSSLanguageService.setCompletionParticipants([
-            emmet.getEmmetCompletionParticipants(virtualDocument, virtualDocument.positionAt(virtualOffset), 'css', util_1.GetEmmetConfiguration(), emmetResults)
+            emmet.getEmmetCompletionParticipants(virtualDocument, virtualDocument.positionAt(virtualOffset), dialect, util_1.GetEmmetConfiguration(), emmetResults)
         ]);
         const completions = this._CSSLanguageService.doComplete(virtualDocument, virtualDocument.positionAt(virtualOffset), vCss);
         if (emmetResults.items.length) {
