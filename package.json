@@ -78,6 +78,36 @@
 					"meta.embedded.block.css": "css",
 					"meta.template.expression.ts": "typescript"
 				}
+			},
+			{
+				"injectTo": [
+					"source.js",
+					"source.js.jsx",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				],
+				"scopeName": "es6.inline.scss",
+				"path": "./syntaxes/es6.inline.scss.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.css": "scss",
+					"meta.template.expression.ts": "typescript"
+				}
+			},
+			{
+				"injectTo": [
+					"source.js",
+					"source.js.jsx",
+					"source.jsx",
+					"source.ts",
+					"source.tsx"
+				],
+				"scopeName": "es6.inline.less",
+				"path": "./syntaxes/es6.inline.less.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.css": "less",
+					"meta.template.expression.ts": "typescript"
+				}
 			}
 		]
 	},
