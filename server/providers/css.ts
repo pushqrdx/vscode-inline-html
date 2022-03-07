@@ -134,7 +134,7 @@ export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 
 export class CSSCompletionItemProvider implements CompletionItemProvider {
 	private _CSSLanguageService: CSSLanguageService = GetCSSLanguageService()
-	private _expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(
@@ -167,13 +167,15 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 			return empty
 		}
 
+		const dialect = match[2]
+
 		// tslint:disable-next-line:no-magic-numbers
-		const matchContent: string = match[2]
+		const matchContent: string = match[3]
 		const matchStartOffset = match.index + match[1].length
 		const matchEndOffset = match.index + match[0].length
 		const matchPosition = document.positionAt(matchStartOffset)
 		const virtualOffset = currentOffset - matchStartOffset
-		const virtualDocument = CreateVirtualDocument('css', matchContent)
+		const virtualDocument = CreateVirtualDocument(dialect, matchContent)
 		const vCss = this._CSSLanguageService.parseStylesheet(virtualDocument)
 		const emmetResults: CSSCompletionList = {
 			isIncomplete: true,
@@ -184,7 +186,7 @@ export class CSSCompletionItemProvider implements CompletionItemProvider {
 			emmet.getEmmetCompletionParticipants(
 				virtualDocument,
 				virtualDocument.positionAt(virtualOffset),
-				'css',
+				dialect,
 				GetEmmetConfiguration(),
 				emmetResults
 			)
