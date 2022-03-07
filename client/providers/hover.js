@@ -34,7 +34,7 @@ class CSSHoverProvider {
     constructor() {
         this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
         this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
     }
     provideHover(document, position, token) {
         const currentOffset = document.offsetAt(position);
@@ -43,11 +43,12 @@ class CSSHoverProvider {
         if (!match) {
             return null;
         }
+        const dialect = match[2];
         // tslint:disable-next-line:no-magic-numbers
-        const matchContent = match[2];
+        const matchContent = match[3];
         const matchStartOffset = match.index + match[1].length;
         const virtualOffset = currentOffset - matchStartOffset;
-        const virtualDocument = util_1.CreateVirtualDocument('css', matchContent);
+        const virtualDocument = util_1.CreateVirtualDocument(dialect, matchContent);
         const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument);
         const hover = this._cssLanguageService.doHover(virtualDocument, virtualDocument.positionAt(virtualOffset), stylesheet);
         return hover;

@@ -65,7 +65,7 @@ export class HTMLHoverProvider implements HoverProvider {
 export class CSSHoverProvider implements HoverProvider {
 	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
 	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
-	private _expression = /(\/\*\s*css\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
 
 	provideHover(
 		document: TextDocument,
@@ -80,11 +80,13 @@ export class CSSHoverProvider implements HoverProvider {
 			return null
 		}
 
+		const dialect = match[2]
+
 		// tslint:disable-next-line:no-magic-numbers
-		const matchContent: string = match[2]
+		const matchContent: string = match[3]
 		const matchStartOffset = match.index + match[1].length
 		const virtualOffset = currentOffset - matchStartOffset
-		const virtualDocument = CreateVirtualDocument('css', matchContent)
+		const virtualDocument = CreateVirtualDocument(dialect, matchContent)
 		const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument)
 		const hover =
 			this._cssLanguageService.doHover(
