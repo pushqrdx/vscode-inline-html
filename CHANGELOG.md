@@ -10,4 +10,4 @@
 | 0.3.1 | 05.08.2021 | Back to working state. |
 | 0.3.2 | 01.21.2022 | Allow non-whitespace before html tag thanks to @P-Froggy. |
 | 0.3.5 | 01.29.2022 | Revert @P-Froggy change while still allowing non-whitespace before tags. |
-
+| 0.3.6 | 09.15.2022 | Fix for typescriptreact files, as well as new snippets for easier block creation. |
