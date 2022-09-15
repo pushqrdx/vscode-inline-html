@@ -29,8 +29,8 @@
 		"theme": "dark"
 	},
 	"scripts": {
-		"compile": "./node_modules/.bin/tsc -p .",
-		"watch:compile": "./node_modules/.bin/tsc --watch -p .",
+		"compile": "npx tsc -p .",
+		"watch:compile": "npx tsc --watch -p .",
 		"package": "npx vsce package"
 	},
 	"categories": [
