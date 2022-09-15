@@ -1,4 +1,4 @@
-html()
+function html()
 {
 	html`
 		<style>
@@ -37,12 +37,12 @@ html()
 	`);
 }
 
-bug()
+function bug()
 {
 	html`div...`;
 }
 
-css()
+function css()
 {
 	css`
 		:host {
