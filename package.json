@@ -50,6 +50,16 @@
 				"title": "Format Inline HTML/CSS"
 			}
 		],
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "snippets/snippets.json"
+			},
+			{
+				"language": "typescript",
+				"path": "snippets/snippets.json"
+			}
+		],
 		"grammars": [
 			{
 				"injectTo": [
