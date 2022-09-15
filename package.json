@@ -37,10 +37,10 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
-		"onLanguage:typescriptreact",
-		"onLanguage:javascriptreact",
+		"onLanguage:javascript",
 		"onLanguage:typescript",
-		"onLanguage:javascript"
+		"onLanguage:javascriptreact",
+		"onLanguage:typescriptreact"
 	],
 	"main": "./client/main",
 	"contributes": {
@@ -67,6 +67,7 @@
 					"source.js.jsx",
 					"source.jsx",
 					"source.ts",
+					"source.ts.tsx",
 					"source.tsx"
 				],
 				"scopeName": "es6.inline.html",
@@ -82,6 +83,7 @@
 					"source.js.jsx",
 					"source.jsx",
 					"source.ts",
+					"source.ts.tsx",
 					"source.tsx"
 				],
 				"scopeName": "es6.inline.css",
@@ -97,6 +99,7 @@
 					"source.js.jsx",
 					"source.jsx",
 					"source.ts",
+					"source.ts.tsx",
 					"source.tsx"
 				],
 				"scopeName": "es6.inline.scss",
@@ -112,6 +115,7 @@
 					"source.js.jsx",
 					"source.jsx",
 					"source.ts",
+					"source.ts.tsx",
 					"source.tsx"
 				],
 				"scopeName": "es6.inline.less",
