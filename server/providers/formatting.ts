@@ -6,22 +6,17 @@ import {
     TextEditor,
     commands as Commands,
     Uri,
-    TextEdit,
-    Position
+    TextEdit
 } from 'vscode'
 
 import {
     getLanguageService as GetHTMLanguageService, 
-    TextDocument as HTMLTextDocument,
-    Position as HTMLPosition
 } from 'vscode-html-languageservice'
 
 import {
     CreateVirtualDocument,
     TranslateHTMLTextEdits,
     Match,
-    GetLanguageRegions,
-    IEmbeddedRegion
 } from '../util'
 
 export class CodeFormatterProvider {
@@ -98,5 +93,4 @@ stylesRegions.map(x => {
 
 var newOffset = vHTML.
 vHTML = CreateVirtualDocument('html', text)
-
 */
