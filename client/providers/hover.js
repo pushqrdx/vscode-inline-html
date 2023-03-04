@@ -55,4 +55,29 @@ class CSSHoverProvider {
     }
 }
 exports.CSSHoverProvider = CSSHoverProvider;
+class StyleHoverProvider {
+    constructor() {
+        this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
+        this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
+        this._expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/g;
+    }
+    provideHover(document, position, token) {
+        const currentOffset = document.offsetAt(position);
+        const documentText = document.getText();
+        const match = util_1.MatchOffset(this._expression, documentText, currentOffset);
+        if (!match) {
+            return null;
+        }
+        const dialect = match[2];
+        // tslint:disable-next-line:no-magic-numbers
+        const matchContent = match[3];
+        const matchStartOffset = match.index + match[1].length;
+        const virtualOffset = currentOffset - matchStartOffset + 8;
+        const virtualDocument = util_1.CreateVirtualDocument("css", `:host { ${matchContent} }`);
+        const stylesheet = this._cssLanguageService.parseStylesheet(virtualDocument);
+        const hover = this._cssLanguageService.doHover(virtualDocument, virtualDocument.positionAt(virtualOffset), stylesheet);
+        return hover;
+    }
+}
+exports.StyleHoverProvider = StyleHoverProvider;
 //# sourceMappingURL=hover.js.map

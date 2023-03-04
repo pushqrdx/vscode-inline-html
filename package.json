@@ -60,7 +60,46 @@
 				"path": "snippets/snippets.json"
 			}
 		],
+		"languages": [
+			{
+				"id": "style",
+				"aliases": [
+					"STYLE",
+					"style"
+				],
+				"extensions": [
+					".style"
+				],
+				"mimetypes": [
+					"text/style"
+				]
+			}
+		],
 		"grammars": [
+			{
+				"injectTo": [
+					"source.js",
+					"source.js.jsx",
+					"source.jsx",
+					"source.ts",
+					"source.ts.tsx",
+					"source.tsx"
+				],
+				"scopeName": "es6.inline.style",
+				"path": "./syntaxes/es6.inline.style.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.style": "style",
+					"meta.template.expression.ts": "typescript"
+				}
+			},
+			{
+				"language": "style",
+				"scopeName": "source.style",
+				"path": "./syntaxes/style.tmLanguage.json",
+				"tokenTypes": {
+					"meta.function.url string.quoted": "other"
+				}
+			},
 			{
 				"injectTo": [
 					"source.js",

@@ -1,0 +1,41 @@
+{
+	"fileTypes": [
+		"js",
+		"jsx",
+		"ts",
+		"tsx"
+	],
+	"injectionSelector": "L:source.js -comment -string, L:source.jsx -comment -string, L:source.ts -comment -string, L:source.tsx -comment -string",
+	"patterns": [
+		{
+			"contentName": "meta.embedded.block.style",
+			"begin": "(?x)(\\s*?(\\w+\\.)?(?:style|\/\\*\\s*style\\s*\\*\/)\\s*)(`)",
+			"beginCaptures": {
+				"0": {
+					"name": "string.template.ts, punctuation.definition.string.template.begin.ts"
+				},
+				"1": {
+					"name": "entity.name.function.tagged-template.ts"
+				}
+			},
+			"end": "(`)",
+			"endCaptures": {
+				"0": {
+					"name": "string.template.ts, punctuation.definition.string.template.end.ts"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.ts#template-substitution-element"
+				},
+				{
+					"include": "source.style"
+				}
+			]
+		},
+		{
+			"include": "source.ts#template-substitution-element"
+		}
+	],
+	"scopeName": "es6.inline.style"
+}
