@@ -61,7 +61,7 @@ export function Match(
 	regex.exec(null)
 
 	let match: RegExpExecArray
-	while ((match = regex.exec(data)) !== null) {
+	if ((match = regex.exec(data)) !== null) {
 		return match
 	}
 	return null
@@ -157,14 +157,11 @@ export function CreateVirtualDocument(
 	// position: Position | HtmlPosition,
 	content: string
 ): HTMLTextDocument {
-	const doc = HTMLTextDocument.create(
-		`embedded://document.${languageId}`,
-		languageId,
-		1,
-		content
-	)
-
-	return doc
+    return HTMLTextDocument.create(
+        `embedded://document.${languageId}`,
+        languageId,
+        1,
+        content)
 }
 
 export interface IEmbeddedRegion {

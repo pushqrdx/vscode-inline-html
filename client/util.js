@@ -35,7 +35,7 @@ exports.MatchOffset = MatchOffset;
 function Match(regex, data) {
     regex.exec(null);
     let match;
-    while ((match = regex.exec(data)) !== null) {
+    if ((match = regex.exec(data)) !== null) {
         return match;
     }
     return null;
@@ -109,8 +109,7 @@ function CreateVirtualDocument(
 languageId, 
 // position: Position | HtmlPosition,
 content) {
-    const doc = vscode_html_languageservice_1.TextDocument.create(`embedded://document.${languageId}`, languageId, 1, content);
-    return doc;
+    return vscode_html_languageservice_1.TextDocument.create(`embedded://document.${languageId}`, languageId, 1, content);
 }
 exports.CreateVirtualDocument = CreateVirtualDocument;
 //# sourceMappingURL=util.js.map

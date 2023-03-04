@@ -65,6 +65,5 @@ stylesRegions.map(x => {
 
 var newOffset = vHTML.
 vHTML = CreateVirtualDocument('html', text)
-
 */ 
 //# sourceMappingURL=formatting.js.map
