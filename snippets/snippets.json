@@ -14,5 +14,13 @@
 			"\t$1",
             "`$2"
 		]
+	},
+	"Insert commented out inline-style block": {
+		"prefix": "/style",
+		"body": [
+			"/*style*/`",
+			"\t$1",
+            "`$2"
+		]
 	}
 }
