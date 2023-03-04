@@ -6,13 +6,16 @@ const css_1 = require("./providers/css");
 const hover_1 = require("./providers/hover");
 const formatting_1 = require("./providers/formatting");
 const selector = ['typescriptreact', 'javascriptreact', 'typescript', 'javascript'];
+const triggers = ['!', '.', '}', ':', '*', '$', ']', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 function activate(Context) {
     new formatting_1.CodeFormatterProvider();
     vscode_1.languages.registerCompletionItemProvider(selector, new html_1.HTMLCompletionItemProvider(), '<', '!', '.', '}', ':', '*', '$', ']', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
     vscode_1.languages.registerHoverProvider(selector, new hover_1.HTMLHoverProvider());
     vscode_1.languages.registerCompletionItemProvider(selector, new css_1.HTMLStyleCompletionItemProvider(), '!', '.', '}', ':', '*', '$', ']', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
     vscode_1.languages.registerHoverProvider(selector, new hover_1.CSSHoverProvider());
-    vscode_1.languages.registerCompletionItemProvider(selector, new css_1.CSSCompletionItemProvider(), '!', '.', '}', ':', '*', '$', ']', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    vscode_1.languages.registerCompletionItemProvider(selector, new html_1.HTMLCompletionItemProvider(), '<', ...triggers);
+    vscode_1.languages.registerCompletionItemProvider(selector, new css_1.HTMLStyleCompletionItemProvider(), ...triggers);
+    vscode_1.languages.registerCompletionItemProvider(selector, new css_1.CSSCompletionItemProvider(), ...triggers);
 }
 exports.activate = activate;
 //# sourceMappingURL=main.js.map
