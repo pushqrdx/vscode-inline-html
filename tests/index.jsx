@@ -74,4 +74,8 @@ function css()
 			display: block;
 		}
 	`)
+
+	style`
+		display: inline;
+	`
 }
