@@ -5,6 +5,7 @@ import { HTMLHoverProvider, CSSHoverProvider } from './providers/hover'
 import { CodeFormatterProvider } from './providers/formatting'
 
 const selector: DocumentSelector = ['typescriptreact', 'javascriptreact', 'typescript', 'javascript']
+const triggers = ['!', '.', '}', ':', '*', '$', ']', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 export function activate(Context: ExtensionContext) {
 	new CodeFormatterProvider()
@@ -54,25 +55,8 @@ export function activate(Context: ExtensionContext) {
 		'9'
 	)
 	Languages.registerHoverProvider(selector, new CSSHoverProvider())
-	Languages.registerCompletionItemProvider(
-		selector,
-		new CSSCompletionItemProvider(),
-		'!',
-		'.',
-		'}',
-		':',
-		'*',
-		'$',
-		']',
-		'0',
-		'1',
-		'2',
-		'3',
-		'4',
-		'5',
-		'6',
-		'7',
-		'8',
-		'9'
-	)
+	
+	Languages.registerCompletionItemProvider(selector, new HTMLCompletionItemProvider(), '<', ...triggers)
+	Languages.registerCompletionItemProvider(selector, new HTMLStyleCompletionItemProvider(), ...triggers)
+	Languages.registerCompletionItemProvider(selector, new CSSCompletionItemProvider(), ...triggers)
 }
