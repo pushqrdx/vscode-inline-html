@@ -8,8 +8,8 @@
 	"injectionSelector": "L:source.js -comment -string, L:source.jsx -comment -string, L:source.ts -comment -string, L:source.tsx -comment -string",
 	"patterns": [
 		{
-			"contentName": "meta.embedded.block.css",
-			"begin": "(?x)(\\s*?(\\w+\\.)?(?:\/\\*\\s*less\\s*\\*\/)\\s*)(`)",
+			"contentName": "meta.embedded.block.less",
+			"begin": "(?x)(\\s*?(\\w+\\.)?(?:less|\/\\*\\s*less\\s*\\*\/)\\s*)(`)",
 			"beginCaptures": {
 				"0": {
 					"name": "string.template.ts, punctuation.definition.string.template.begin.ts"
