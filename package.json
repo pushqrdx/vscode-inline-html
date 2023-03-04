@@ -144,7 +144,7 @@
 				"scopeName": "es6.inline.scss",
 				"path": "./syntaxes/es6.inline.scss.json",
 				"embeddedLanguages": {
-					"meta.embedded.block.css": "scss",
+					"meta.embedded.block.scss": "scss",
 					"meta.template.expression.ts": "typescript"
 				}
 			},
@@ -160,7 +160,7 @@
 				"scopeName": "es6.inline.less",
 				"path": "./syntaxes/es6.inline.less.json",
 				"embeddedLanguages": {
-					"meta.embedded.block.css": "less",
+					"meta.embedded.block.less": "less",
 					"meta.template.expression.ts": "typescript"
 				}
 			}
