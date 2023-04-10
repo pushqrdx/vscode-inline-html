@@ -2,7 +2,7 @@
 	"name": "inline-html",
 	"displayName": "Inline HTML",
 	"description": "IntelliSense, Emmet and Syntax Highlighting for html/css inside ES6 Template Strings.",
-	"version": "0.3.7",
+	"version": "0.3.8",
 	"publisher": "pushqrdx",
 	"license": "MIT",
 	"icon": "docs/logo.png",
