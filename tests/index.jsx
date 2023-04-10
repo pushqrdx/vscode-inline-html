@@ -79,3 +79,20 @@ function css()
 		display: inline;
 	`
 }
+
+function issue39() 
+{
+	document.querySelector("#main").innerHTML = /*html*/`
+		<a href="http://127.0.0.1:8080/${data[0].id}">${data[0].title}</a>
+	`
+
+	/*css*/`
+		:root {
+			content: "${data[0].id}";
+		}
+	`
+
+	/*style*/`
+		content: "${data[0].id}";
+	`
+}

@@ -7,7 +7,13 @@
 
 ## Usage
 
-Use (`/*html*/`, `html`, `/*css*/`, `css`) followed by the backtick \` character inside a `Javascript` or `Typescript` file to get full editor support inside the template literal. Using this extension, you can drastically enhance `Polymer` development experience or just add `html` or `css` support inside an `ES6` template string. Formatting is also supported.
+Use (`/*html*/`, `html`, `/*css*/`, `css`, `/*style*/`, `style`) followed by the backtick \` character inside a `Javascript` or `Typescript` file to get full editor support inside the template literal. Using this extension, you can drastically enhance `Polymer` development experience or just add `html/css/less/sass/style` support inside an `ES6` template string. 
+
+## Features
+
+- Full emmet support for all supported embeds.
+- Hover and code completion.
+- Formatting through a custom command `editor.action.formatInlineHtml`.
 
 ## Contributing
 
