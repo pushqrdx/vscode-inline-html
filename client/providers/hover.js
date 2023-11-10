@@ -8,7 +8,7 @@ class HTMLHoverProvider {
         this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
         this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
         // private _expression = /(html\s*`)([^`]*)(`)/g
-        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi;
     }
     provideHover(document, position, token) {
         const currentOffset = document.offsetAt(position);
@@ -34,7 +34,7 @@ class CSSHoverProvider {
     constructor() {
         this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
         this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/gi;
     }
     provideHover(document, position, token) {
         const currentOffset = document.offsetAt(position);
@@ -59,7 +59,7 @@ class StyleHoverProvider {
     constructor() {
         this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
         this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/gi;
     }
     provideHover(document, position, token) {
         const currentOffset = document.offsetAt(position);

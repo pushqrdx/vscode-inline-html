@@ -5,7 +5,7 @@ const vscode_html_languageservice_1 = require("vscode-html-languageservice");
 const util_1 = require("../util");
 class CodeFormatterProvider {
     constructor() {
-        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi;
         vscode_1.commands.registerTextEditorCommand('editor.action.formatInlineHtml', this.format, this);
     }
     format(textEditor) {

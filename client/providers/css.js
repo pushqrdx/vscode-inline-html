@@ -9,7 +9,7 @@ class HTMLStyleCompletionItemProvider {
     constructor() {
         this._cssLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
         this._HTMLanguageService = vscode_html_languageservice_1.getLanguageService();
-        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi;
         this._cache = new cache_1.CompletionsCache();
     }
     provideCompletionItems(document, position, _token) {
@@ -73,7 +73,7 @@ exports.HTMLStyleCompletionItemProvider = HTMLStyleCompletionItemProvider;
 class CSSCompletionItemProvider {
     constructor() {
         this._CSSLanguageService = vscode_css_languageservice_1.getCSSLanguageService();
-        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g;
+        this._expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/gi;
         this._cache = new cache_1.CompletionsCache();
     }
     provideCompletionItems(document, position, _token) {

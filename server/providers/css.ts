@@ -34,7 +34,7 @@ import { CompletionsCache } from '../cache'
 export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 	private _cssLanguageService: CSSLanguageService = GetCSSLanguageService()
 	private _HTMLanguageService: HTMLanguageService = GetHTMLanguageService()
-	private _expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(
@@ -134,7 +134,7 @@ export class HTMLStyleCompletionItemProvider implements CompletionItemProvider {
 
 export class CSSCompletionItemProvider implements CompletionItemProvider {
 	private _CSSLanguageService: CSSLanguageService = GetCSSLanguageService()
-	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/gi
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(
