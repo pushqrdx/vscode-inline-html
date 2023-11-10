@@ -13,3 +13,4 @@
 | 0.3.6 | 09.15.2022 | Fix for typescriptreact files, as well as new snippets for easier block creation. |
 | 0.3.7 | 03.04.2023 | Added support for style tags highlighting/completion/hover. |
 | 0.3.8 | 04.10.2023 | Fixed regression in 0.3.7 that resulted in issue #39. |
+| 0.3.9 | 11.10.2023 | Added support for case insensitive blocks to fix #44. |
