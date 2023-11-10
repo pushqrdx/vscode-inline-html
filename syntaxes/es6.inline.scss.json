@@ -9,7 +9,7 @@
 	"patterns": [
 		{
 			"contentName": "meta.embedded.block.scss",
-			"begin": "(?x)(\\s*?(\\w+\\.)?(?:scss|\/\\*\\s*scss\\s*\\*\/)\\s*)(`)",
+			"begin": "(?ix)(\\s*?(\\w+\\.)?(?:scss|\/\\*\\s*scss\\s*\\*\/)\\s*)(`)",
 			"beginCaptures": {
 				"0": {
 					"name": "string.template.ts, punctuation.definition.string.template.begin.ts"
