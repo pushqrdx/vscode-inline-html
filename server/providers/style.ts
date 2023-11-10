@@ -33,7 +33,7 @@ import { CompletionsCache } from '../cache'
 
 export class StyleCompletionItemProvider implements CompletionItemProvider {
 	private _CSSLanguageService: CSSLanguageService = GetCSSLanguageService()
-	private _expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/gi
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(

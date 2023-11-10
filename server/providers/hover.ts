@@ -22,7 +22,7 @@ export class HTMLHoverProvider implements HoverProvider {
 	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
 	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
 	// private _expression = /(html\s*`)([^`]*)(`)/g
-	private _expression =  /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g
+	private _expression =  /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi
 
 
 	provideHover(
@@ -64,7 +64,7 @@ export class HTMLHoverProvider implements HoverProvider {
 export class CSSHoverProvider implements HoverProvider {
 	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
 	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
-	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(css|less|scss)\s*\*\/\s*`|css\s*`)([^`]*)(`)/gi
 
 	provideHover(
 		document: TextDocument,
@@ -101,7 +101,7 @@ export class CSSHoverProvider implements HoverProvider {
 export class StyleHoverProvider implements HoverProvider {
 	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
 	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
-	private _expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/g
+	private _expression = /(\/\*\s*(style)\s*\*\/\s*`|style\s*`)([^`]*)(`)/gi
 
 	provideHover(
 		document: TextDocument,

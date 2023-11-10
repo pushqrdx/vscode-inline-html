@@ -20,7 +20,7 @@ import {
 } from '../util'
 
 export class CodeFormatterProvider {
-    private _expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/g
+    private _expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi
     private document: TextDocument;
 
     constructor() {
