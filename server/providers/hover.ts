@@ -21,8 +21,7 @@ import { CreateVirtualDocument, MatchOffset } from '../util'
 export class HTMLHoverProvider implements HoverProvider {
 	private _htmlLanguageService: HtmlLanguageService = GetHtmlLanguageService()
 	private _cssLanguageService: CssLanguageService = GetCssLanguageService()
-	// private _expression = /(html\s*`)([^`]*)(`)/g
-	private _expression =  /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi
+	private _expression =  /(\/\*\s*html\s*\*\/\s*`|(?<!`)html\s*`)([^`]*)(`)/gi
 
 
 	provideHover(

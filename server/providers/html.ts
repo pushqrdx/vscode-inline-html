@@ -26,8 +26,7 @@ import { CompletionsCache } from '../cache'
 
 export class HTMLCompletionItemProvider implements CompletionItemProvider {
 	private _htmlLanguageService: HTMLanguageService = GetHTMLanguageService()
-	private _expression =  /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi
-	// private _expression = /(html\s*`)([^`]*)(`)/g
+	private _expression =  /(\/\*\s*html\s*\*\/\s*`|(?<!`)html\s*`)([^`]*)(`)/gi
 	private _cache = new CompletionsCache()
 
 	public provideCompletionItems(

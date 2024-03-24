@@ -7,8 +7,7 @@ const cache_1 = require("../cache");
 class HTMLCompletionItemProvider {
     constructor() {
         this._htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
-        this._expression = /(\/\*\s*html\s*\*\/\s*`|html\s*`)([^`]*)(`)/gi;
-        // private _expression = /(html\s*`)([^`]*)(`)/g
+        this._expression = /(\/\*\s*html\s*\*\/\s*`|(?<!`)html\s*`)([^`]*)(`)/gi;
         this._cache = new cache_1.CompletionsCache();
     }
     provideCompletionItems(document, position, token) {
