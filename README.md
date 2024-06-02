@@ -26,4 +26,4 @@ Fixed a bug or added a new feature? Please feel free to submit a pull request at
 
 ## License
 
-This software is released under the terms of the MIT license.
+This software is released under the terms of the GPL-3.0 license.
