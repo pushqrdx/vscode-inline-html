@@ -40,7 +40,8 @@
 		"onLanguage:javascript",
 		"onLanguage:typescript",
 		"onLanguage:javascriptreact",
-		"onLanguage:typescriptreact"
+		"onLanguage:typescriptreact",
+		"onLanguage:fsharp"
 	],
 	"main": "./client/main",
 	"contributes": {
@@ -76,6 +77,16 @@
 			}
 		],
 		"grammars": [
+			{
+				"injectTo": [
+					"source.fsharp"
+				],
+				"scopeName": "fsharp.inline.html",
+				"path": "./syntaxes/fsharp.inline.html.json",
+				"embeddedLanguages": {
+					"meta.embedded.block.html": "html"
+				}
+			},
 			{
 				"injectTo": [
 					"source.js",

@@ -1,0 +1,21 @@
+{
+	"fileTypes": ["fs", "fsx"],
+	"patterns": [
+		{
+			"contentName": "meta.embedded.block.html",
+			"begin": "(JSX\\.jsx\\s*\\$)(\"\"\")",
+			"beginCaptures": {
+				"0": { "name": "string.template.fsharp punctuation.definition.string.template.begin.fsharp" },
+				"1": { "name": "entity.name.function.tagged-template.fsharp" }
+			},
+			"end": "(\"\"\")",
+			"endCaptures": {
+				"0": { "name": "string.template.fsharp punctuation.definition.string.template.end.fsharp" }
+			},
+			"patterns": [
+				{ "include": "text.html.basic" }
+			]
+		}
+	],
+	"scopeName": "fsharp.inline.html"
+}
